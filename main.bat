@@ -16,14 +16,14 @@ IF %ERRORLEVEL%==0 (
     ECHO Ошибка при блокировке. Убедитесь, что у вас есть права администратора.
 )
 
-REM Проверяем, существует ли ветка Policies\System
+REM  Policies\System
 REG QUERY "HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System" >nul 2>&1
 IF %ERRORLEVEL% NEQ 0 (
     ECHO Создаем ветку Policies\System
     REG ADD "HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System" /f
 )
 
-REM Устанавливаем параметр DisableRegistryTools
+REM DisableRegistryTools
 REG ADD "HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System" /v DisableRegistryTools /t REG_DWORD /d 1 /f
 
 IF %ERRORLEVEL%==0 (
